@@ -109,14 +109,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
 
-  /v1/books/{bookId}:
+  /v1/books/{BookId}:
     put:
       tags:
         - book
       summary: Atualiza um livro
       description: Atualiza um livro pelo id
       parameters:
-        - name: bookId
+        - name: BookId
           in: path
           description: ID do livro a ser achado
           required: true
@@ -144,7 +144,7 @@ paths:
       summary: Ache um livro pelo ID
       description: Retorna um único livro
       parameters:
-        - name: bookId
+        - name: BookId
           in: path
           description: ID do livro a ser achado
           required: true
@@ -165,7 +165,7 @@ paths:
       summary: Deleta um livro
       description: Deleta um livro
       parameters:
-        - name: bookId
+        - name: BookId
           in: path
           description: ID do livro a ser deletado
           required: true
@@ -202,22 +202,6 @@ paths:
         - book
       summary: Lista todos os livros
       description: Lista todos os livros cadastrados
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items: 
-                  $ref: '#/components/schemas/Book'
-
-  /v1/books?{search[description]}:
-    get:
-      tags:
-        - book
-      summary: Lista todos os livros com determinada descrição
-      description: Lista todos os livros cadastrados com determinado descrição
       parameters:
         - in: query
           name: search[description]
@@ -329,27 +313,10 @@ paths:
         - author
       summary: Lista todos os autores
       description: Lista todos os autores cadastrados
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items: 
-                  $ref: '#/components/schemas/Author'
-
-  /v1/authors?{search[name]}:
-    get:
-      tags:
-        - author
-      summary: Lista todos os autores com determinado nome
-      description: Lista todos os autores cadastrados com determinado nome
       parameters:
         - name: search[name]
-          in: path
+          in: query
           description: Nome a ser pesquisado
-          required: true
           schema:
             type: string
             example: merso
@@ -361,7 +328,7 @@ paths:
               schema:
                 type: array
                 items: 
-                  $ref: '#/components/schemas/Author'    
+                  $ref: '#/components/schemas/Author'
 
 components:
   schemas:
